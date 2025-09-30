@@ -18,12 +18,18 @@ class Note {
 
     
  factory Note.fromOData(Map<String, dynamic> json) {
+  // Use 'as String?' for safe access
+  final String? createdAtString = json['CreatedAt'] as String?;
+  final String? updatedAtString = json['UpdatedAt'] as String?;
+
   return Note(
-    id: json['Id'],
-    title: json['Title'],
-    story: json['Story'],
-    createdAt: DateTime.parse(json['CreatedAt']),
-    updatedAt: DateTime.parse(json['UpdatedAt']), 
+    id: json['Id'] as String?,
+    title: json['Title'] as String,
+    story: json['Story'] as String,
+    
+    // SAFE PARSING: Only call parse if the string is not null.
+    createdAt: createdAtString != null ? DateTime.parse(createdAtString) : null,
+    updatedAt: updatedAtString != null ? DateTime.parse(updatedAtString) : null,
   );
 }
 

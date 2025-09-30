@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:notepad_app/models/note.dart';
 
 class NoteService {
-final String baseUrl = "http://10.195.213.102:8008/v1/Notes";
+final String baseUrl = "http://10.250.1.102:8008/v1/Notes"; 
 
   Future<Note?> createNote(Note note) async {
     final response = await http.post(Uri.parse(baseUrl),
